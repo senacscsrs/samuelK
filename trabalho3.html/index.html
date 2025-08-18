@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda Diária</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 30px;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      height: 100%;
+      gap: 30px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 320px;
+    }
+
+    .calendar {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .calendar .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .calendar h2 {
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .weekdays, .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .weekdays span {
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    .days span {
+      padding: 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .days span.marked {
+      background-color: #90ee90;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu h2 {
+      margin-bottom: 10px;
+    }
+
+    .botao {
+      text-decoration: none;
+      background-color: #bdb32e;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .botao:hover {
+      background-color: #807916;
+    }
+
+    /* Right Section */
+    .right-section {
+      display: flex;
+      flex: 1;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .imagem-esquerda {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ccff88;
+      border-radius: 8px;
+      padding: 10px;
+      width: 60px;
+    }
+
+    .imagem-esquerda span {
+      writing-mode: vertical-lr;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* Schedule Blocks */
+    .schedule {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .bloco {
+      flex: 1;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 18px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      font-size: 18px;
+      border: none;
+      background: transparent;
+      outline: none;
+    }
+
+    .red { background-color: #ff9999; }
+    .blue { background-color: #99ccff; }
+    .green { background-color: #a2e4a2; }
+    .yellow { background-color: #fff99a; }
+
+.imagem-esquerda {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  width: 60px;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.parte {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  writing-mode: horizontal-tb;
+  transform: none; /* remove rotação */
+  color: #000;
+  text-align: center;
+}
+
+.mh {
+  background-color: #ccff88; /* verde claro */
+}
+
+.td {
+  background-color: #ffbb55; /* laranja */
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar (calendário + botões) -->
+    <div class="sidebar">
+      <div class="calendar">
+        <div class="header">
+          <button onclick="changeMonth(-1)">&#8249;</button>
+          <h2 id="month-year"></h2>
+          <button onclick="changeMonth(1)">&#8250;</button>
+        </div>
+        <div class="weekdays">
+          <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+        </div>
+        <div class="days" id="days"></div>
+      </div>
+
+      <div class="menu">
+        <h2>OUTROS</h2>
+        <a href="suporte.html" class="botao">Suporte</a>
+        <a href="config.html" class="botao">Configurações</a>
+        <a href="data.html" class="botao">Datas</a>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+     <div class="imagem-esquerda">
+  <div class="parte mh">mh</div>
+  <div class="parte td">td</div>
+</div>
+
+      <div class="schedule">
+        <div class="bloco red"><input type="text" value="09:30 trabalho de filosofia"></div>
+        <div class="bloco blue"><input type="text" value="12:00 almoço"></div>
+        <div class="bloco green"><input type="text" value="14:00 fut dos guri"></div>
+        <div class="bloco yellow"><input type="text" value="17:50 ir na academia"></div>
+        <div class="bloco red"><input type="text" value="20:30 noite de filme"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+      "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    let currentDate = new Date();
+
+    function renderCalendar() {
+      const monthYear = document.getElementById("month-year");
+      const daysContainer = document.getElementById("days");
+      daysContainer.innerHTML = "";
+
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      monthYear.textContent = `${monthNames[month]} ${year}`;
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let i = 0; i < firstDay; i++) {
+        daysContainer.innerHTML += `<span></span>`;
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const day = document.createElement("span");
+        day.textContent = d;
+        day.onclick = () => day.classList.toggle("marked");
+        daysContainer.appendChild(day);
+      }
+    }
+
+    function changeMonth(offset) {
+      currentDate.setMonth(currentDate.getMonth() + offset);
+      renderCalendar();
+    }
+
+    renderCalendar();
+  </script>
+</body>
+</html>

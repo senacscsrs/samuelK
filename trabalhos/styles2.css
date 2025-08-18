@@ -1,6 +1,5 @@
 /*styles2.css*/
 body {
-<<<<<<< HEAD:samuel/trabalhos/styles2.css
      background-color: rgb(35, 129, 105);
   color: white;
   font-family: Arial, sans-serif;
@@ -21,32 +20,21 @@ footer {
   position: sticky;
   bottom: 0;
   color: white;
-=======
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-color: rgb(120, 104, 198);
->>>>>>> 2644d2dbcc0eba430d6c9891f10f557e76406d88:samuel/styles2.css
 }
-header {
-    background-color: rgb(24, 199, 167);
-    color: rgb(50, 43, 43);
-    padding: 50px 20px;
-}
+
 
 .botao {
     display: inline-block;
     margin-top: 20px;
     padding: 50px 20px;
-    color: rgb(120, 104, 198);
-    background-color: rgb(120, 104, 198);
+    color: #0b3d30;
+    background-color: #0b3d30;
     text-decoration: none;
     border-radius: 5px;
 }
 
 .botao:hover {
-    background-color:rgb(120, 104, 198);
+    background-color:#0b3d30;
 }
 
 section {
@@ -65,8 +53,8 @@ section {
 .aluno-btn {
     padding: 12px 24px;
     font-size: 16px;
-    color: black;
-    background-color: rgb(120, 104, 198);
+    color: rgb(255, 255, 255);
+    background-color: #0b3d30;
     border: none;
     border-radius: 8px;
     cursor: pointer;

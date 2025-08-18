@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações Principais</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eaeaea;
+      margin: 0;
+      padding: 40px 0;
+    }
+
+
+    .container {
+      max-width: 500px;
+      background-color: #2193b0;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+
+    h1 {
+      font-size: 1.6em;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+
+    h2 {
+      font-size: 1.1em;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+
+    .opcao {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+
+    input[type="checkbox"] {
+      margin-right: 12px;
+      transform: scale(1.2);
+    }
+
+
+    label {
+      font-size: 1em;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Configurações Principais</h1>
+    <h2>Página de Configuração</h2>
+
+
+    <div style="text-align: left; margin-top: 40px ;">
+  <button onclick="desmarcarTudo()" style="padding: 10px 20px; background-color: #bdb32e; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer;">
+    Desmarcar todas as alternativas
+  </button>
+</div>
+<script>
+  function desmarcarTudo() {
+    const caixas = document.querySelectorAll('.opcao input[type="checkbox"]');
+    caixas.forEach(caixa => {
+      caixa.checked = false;
+    });
+  }
+</script>
+    <div class="opcao">
+      <input type="checkbox" id="notificacoes">
+      <label for="notificacoes">Notificações do app no celular</label>
+    </div>
+    <div class="opcao">
+      <input type="checkbox" id="voz">
+      <label for="voz"> Lembrar dos dados de logim</label>
+    </div>
+    <div class="opcao">
+      <input type="checkbox" id="mais">
+      <label for="mais">Sem notificações do app</label>
+    </div>
+    <div class="opcao">
+      <input type="checkbox" id="nunca">
+      <label for="nunca">Não lembrar dos dados nunca mais</label>
+    </div>
+  </div>
+</div>
+</body>
+</html>

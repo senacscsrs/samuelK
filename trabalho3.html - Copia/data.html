@@ -1,0 +1,140 @@
+<div class="calendar">
+  <div class="header">
+    <button onclick="changeMonth(-1)">&#8249;</button>
+    <h2 id="month-year"></h2>
+    <button onclick="changeMonth(1)">&#8250;</button>
+  </div>
+  <div class="weekdays">
+    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+  </div>
+  <div class="days" id="days"></div>
+</div>
+<style>
+.calendar {
+  width: 300px;
+  margin: auto;
+  font-family: sans-serif;
+  text-align: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weekdays, .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.days span {
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+
+body {
+  background-color: #2193b0;
+}
+
+
+
+
+.days span.marked {
+  background-color: #90ee90;
+}
+</style>
+<script>
+const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+let currentDate = new Date(2025, 0); // Inicia em janeiro de 2025
+
+
+function renderCalendar() {
+  const monthYear = document.getElementById("month-year");
+  const daysContainer = document.getElementById("days");
+  daysContainer.innerHTML = "";
+
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  monthYear.textContent = `${monthNames[month]} ${year}`;
+
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+
+  for (let i = 0; i < firstDay; i++) {
+    daysContainer.innerHTML += `<span></span>`;
+  }
+
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const day = document.createElement("span");
+    day.textContent = d;
+    day.onclick = () => day.classList.toggle("marked");
+    daysContainer.appendChild(day);
+  }
+}
+
+
+function changeMonth(offset) {
+  currentDate.setMonth(currentDate.getMonth() + offset);
+  renderCalendar();
+}
+
+
+renderCalendar();
+</script>
+
+
+<div id="input-area"></div>
+<button id="btn-adicionar" onclick="adicionarCaixaTexto()">Adicionar campo</button>
+<style>
+#input-area {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
+#input-area input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 280px;
+}
+
+
+#btn-adicionar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #bdb32e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: background-color 0.3s;
+}
+
+
+#btn-adicionar:hover {
+  background-color: #807916;
+}
+</style>
+<script>
+function adicionarCaixaTexto() {
+  const area = document.getElementById("input-area");
+  const novoInput = document.createElement("input");
+  novoInput.type = "text";
+  novoInput.placeholder = "Digite aqui...";
+  area.appendChild(novoInput);
+}
+</script>
+
+
