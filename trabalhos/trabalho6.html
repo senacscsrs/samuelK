@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Controle de Pedidos</title>
+</head>
+<body>
+
+  <h1>Controle de Pedidos</h1>
+  <div id="resultado"></div>
+
+  <script>
+    var pedidos = [
+      { cliente: "Ana", produto: "Camisa", preco: 50, quantidade: 2 },
+      { cliente: "João", produto: "Calça", preco: 80, quantidade: 1 },
+      { cliente: "Ana", produto: "Tênis", preco: 200, quantidade: 1 },
+      { cliente: "Carlos", produto: "Boné", preco: 30, quantidade: 3 },
+      { cliente: "João", produto: "Jaqueta", preco: 150, quantidade: 1 }
+    ];
+
+    var totais = {};
+
+    for (var i = 0; i < pedidos.length; i++) {
+      var pedido = pedidos[i];
+      var valor = pedido.preco * pedido.quantidade;
+
+      if (totais[pedido.cliente]) {
+        totais[pedido.cliente] = totais[pedido.cliente] + valor;
+      } else {
+        totais[pedido.cliente] = valor;
+      }
+    }
+
+    var maiorNome = "";
+    var maiorValor = 0;
+
+    for (var nome in totais) {
+      if (totais[nome] > maiorValor) {
+        maiorValor = totais[nome];
+        maiorNome = nome;
+      }
+    }
+
+    var resultado = document.getElementById("resultado");
+    resultado.innerHTML = "<b>Totais por cliente:</b><br>";
+
+    for (var nome in totais) {
+      resultado.innerHTML += nome + ": R$ " + totais[nome] + "<br>";
+    }
+
+    resultado.innerHTML += "<br><b>Maior comprador:</b> " + maiorNome + " (R$ " + maiorValor + ")";
+  </script>
+
+</body>
+</html>
